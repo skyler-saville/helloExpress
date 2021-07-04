@@ -11,9 +11,9 @@ router.use(function timeLog(req, res, next) {
 
 // define home route
 router.get('/', getIP, (req, res) => {
-    if (req.geo) {
+    if (req.geo.info) {
         console.log('the ip is set')
-        res.send(`req.geo is: ${req.geo}`)
+        res.send(`req.geo.info is: ${req.geo.info}`)
     } else {
         res.send('Timelog home page')
     }
