@@ -12,8 +12,10 @@ const getIP = async function (req, res, next) {
  
     try{
         if (req.connection.remoteAddress !== '::1') {
+            console.log(`setting ip to ${req.connection.remoteAddress}`)
             ip = req.connection.remoteAddress
         }
+        console.log('fetching from ip-api.com...')
         fetch(`http://ip-api.com/json/${ip}`)
             .then(res=>res.json())
             .then(json => console.log(json))
