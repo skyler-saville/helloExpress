@@ -1,19 +1,38 @@
 const express = require('express')
 
 const app = express()
+// disable the default Express header
+app.disable('x-powered-by')
+const cors = require('cors')
+const cookieParser = require('cookie-parser')
 
 const port = process.env.PORT || 8080
+
+// add external router files
+const timelog = require('./routes/timelog')
+
+
+// add middlewares
+app.use(cors())
+app.use(cookieParser())
+app.use(express.json()) // used instead of body-parser package
+app.use(express.urlencoded({ extended: true })) // used instead of body-parser package
+
+
 
 // routes
 app.get('/', (req, res) => {
     res.type('text/plain')
-    res.send('Hello Express')
+    res.send('Hello Express!')
 })
 
 app.get('/about', (req, res) => {
     res.type('text/plain')
     res.send('About testing ExpressJS')
 })
+
+// use external router files
+app.use('/timelog', timelog)
 
 // custom 404 page
 app.use((req, res) => {
