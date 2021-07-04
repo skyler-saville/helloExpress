@@ -11,7 +11,7 @@ router.use(function timeLog(req, res, next) {
 
 // define home route
 router.get('/', getIP, (req, res) => {
-    console.log(`req.userip: ${req.userip}`)
+
     res.send('Timelog home page')
 
 })
