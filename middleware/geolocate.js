@@ -19,7 +19,7 @@ const getIP = async function (req, res, next) {
         fetch(`http://ip-api.com/json/${ip}`)
             .then(res=>res.json())
             .then(json => console.log(json))
-        
+            req.geo = 'set'
     } catch (err) {
         console.log(`${err.name}: ${err.message}`)
     }
