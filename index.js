@@ -10,7 +10,10 @@ const port = process.env.PORT || 8080
 
 // add external router files
 const timelog = require('./routes/timelog')
-const users = require('./routes/users/index')
+const users = require('./routes/users/')
+const projects = require('./routes/projects/')
+const jobs = require('./routes/jobs/')
+const tasks = require('./routes/tasks/')
 
 
 // add middlewares
@@ -35,6 +38,10 @@ app.get('/about', (req, res) => {
 // use external router files
 app.use('/timelog', timelog)
 app.use('/users', users)
+app.use('/projects', projects)
+app.use('/jobs', jobs)
+app.use('/tasks', tasks)
+
 
 // custom 404 page
 app.use((req, res) => {

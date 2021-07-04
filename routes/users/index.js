@@ -1,6 +1,8 @@
 const usersCtrl = require('../../controllers/users')
 const express = require('express')
 const router = express.Router()
+const fetch = require('node-fetch')
+
 
 //middleware that is specific to this router
 router.use(function setUserID(req, res, next) {
