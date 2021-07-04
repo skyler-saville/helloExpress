@@ -13,8 +13,11 @@ router.use(function timeLog(req, res, next) {
 router.get('/', getIP, (req, res) => {
     if (req.geo) {
         console.log('the ip is set')
+        res.send(`req.geo is: ${req.geo}`)
+    } else {
+        res.send('Timelog home page')
     }
-    res.send('Timelog home page')
+    
 
 })
 
