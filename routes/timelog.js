@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const getIP = require('../middleware/geolocate')
+
 
 // middleware that is specific to this router
 router.use(function timeLog(req, res, next) {
@@ -11,12 +11,10 @@ router.use(function timeLog(req, res, next) {
 })
 
 // define home route
-router.get('/', getIP, (req, res) => {
-    if (req.geo) {
-        console.log('the ip is set')
+router.get('/', (req, res) => {
+    if (req.time) {
         const payload = {
             time: req.time.toUTCString(),
-            ip_info: req.geo
         }
         res.send(payload)
     } else {
