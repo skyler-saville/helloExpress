@@ -8,6 +8,7 @@ const random_ip = [
                     '168.100.241.38','113.146.89.33'
                 ]
 let ip = random_ip[Math.floor(Math.random()*random_ip.length)] // default for when using localhost
+let info
 const getIP = async function (req, res, next) {
  
     try{
@@ -18,8 +19,12 @@ const getIP = async function (req, res, next) {
         console.log('fetching from ip-api.com...')
         fetch(`http://ip-api.com/json/${ip}`)
             .then(res=>res.json())
-            .then(json => console.log(json))
-            req.geo = 'set'
+            .then(json => info = json)
+            if (info ) {
+                req.geo = 'set'
+                req.geo.info = info
+    
+            }
     } catch (err) {
         console.log(`${err.name}: ${err.message}`)
     }
