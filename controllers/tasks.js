@@ -4,11 +4,11 @@
 
  const express = require('express')
 
- function getAllTasks() {
-     return (`getAllTasks not yet implemented`)
+ function getAllTasks() { 
+     return (`getAllTasks not yet implemented. Put this contoller behind the admin middleware`)
  }
  
- function createNewTask() {
+ function createNewTask() { // create a new task belonging to users company?
      return (`createNewTask not yet implemented`)
  }
  

@@ -17,45 +17,49 @@ function registerNewUser() {
  *  pulled from the JWT stored in a cookie
  * 
  */ 
-function getCurrentUser(id) {
-    if (!id){
-        console.log(`id of ${id} may not have been passed in correctly`)
+function getCurrentUser(user) {
+    if (!user.id){
+        console.log(`id of ${user} may not have been passed in correctly`)
         return (`getCurrentUser not yet implemented`)
         
     }
     // use the id to query the database and find the one user
-    console.log(`id of ${id}`)
-    return (`getCurrentUser = ${id}`)
+    console.log(`id of ${user.id}`)
+    // return JSON
+    return ({currentUser : {
+        id: `${user.id}`,
+        companyId: `${user.companyId}`
+    }})
 }
 
-function updateCurrentUser(id) {
-    if (!id) {
-        console.log(`id of ${id} may not have been passed in correctly`)
+function updateCurrentUser(user) {
+    if (!user) {
+        console.log(`id of ${user} may not have been passed in correctly`)
         return (`updateCurrentUser not yet implemented`)
     }
     // use the id to query the database and find the one user
-    console.log(`id of ${id}`)
-    return (`updateCurrentUser = ${id}`)
+    console.log(`id of ${user.id}`)
+    return (`updateCurrentUser = ${user.id}`)
 }
 
-function removeCurrentUser (id){
-    if (!id) {
-        console.log(`id of ${id} may not have been passed in correctly`)
+function removeCurrentUser (user){
+    if (!user) {
+        console.log(`id of ${user} may not have been passed in correctly`)
         return (`removeCurrentUser not yet implemented`)
     }
     // use the id to query the database and find the one user
-    console.log(`id of ${id}`)
-    return (`removeCurrentUser = ${id}`)
+    console.log(`id of ${user.currentUserid}`)
+    return (`removeCurrentUser = ${user.id}`)
 }
 
-function getAllUsersFromCompanyID(id) {
-    if (!id) {
-        console.log(`id of ${id} may not have been passed in correctly`)
+function getAllUsersFromCompanyID(user) {
+    if (!user) {
+        console.log(`id of ${user} may not have been passed in correctly`)
         return (`getAllUsersFromCompanyID not yet implemented`)
     }
     // use the id to query the database and find all users belonging to that company
-    console.log(`id of ${id}`)
-    return (`getAllUsersFromCompanyID = ${id}`)
+    console.log(`id of ${user.id}`)
+    return (`getAllUsersFromCompanyID = ${user.companyId}`)
 }
 
 module.exports = {

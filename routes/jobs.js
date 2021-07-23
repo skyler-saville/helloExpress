@@ -1,20 +1,28 @@
-const jobCtrl = require('../../controllers/jobs')
+const jobCtrl = require('../controllers/jobs')
 const express = require('express')
 const router = express.Router()
 
 //middleware that is specific to this router
 router.use(function setUserID(req, res, next) {
-    // use the JWT cookie, if available, to get the current users id
-    // only use the id in the JWT, even if there is more data in the JWT
-    req.me = 's0meRand0mStr1ng'
+    // Check for JWT cookie
+    // if cookie exists, set req.me to users id
+    // only use the id in the JWT, even if there is more data
+    req.me = {
+        id: '93pqwehiufjncqpwe9iufn', 
+        companyId: 'dasp9iohkj4nrtfpas9difhn3'
+    }
     next()
 })
 
-
-router.route('/')
+router.route('/') // use ADMIN middleware to protect route
     .get((req, res) => {
         const data = jobCtrl.getAllJobs()
         res.send(data)
+    })
+
+router.route('/company') // get jobs from users companyId
+    .get((req, res) => {
+       res.send(jobCtrl.getAllJobsFromCompanyID(req.me.companyId))
     })
 
 router.route('/:id')
@@ -31,9 +39,6 @@ router.route('/:id')
       res.send(jobCtrl.removeCurrentJob(req.params.id))
     })
 
-router.route('/company/:id')
-    .get((req, res) => {
-       res.send(jobCtrl.getAllJobsFromCompanyID(req.params.id))
-    })
+
 
 module.exports = router

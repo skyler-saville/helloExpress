@@ -5,15 +5,24 @@ const app = express()
 app.disable('x-powered-by')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
+const mongoose = require('mongoose')
+const dotenv = require('dotenv')
+dotenv.config() // set up to keep sensitive data protected
 
 const port = process.env.PORT || 8080
 
 // add external router files
 const timelog = require('./routes/timelog')
-const users = require('./routes/users/')
-const projects = require('./routes/projects/')
-const jobs = require('./routes/jobs/')
-const tasks = require('./routes/tasks/')
+const users = require('./routes/users')
+const projects = require('./routes/projects')
+const jobs = require('./routes/jobs')
+const tasks = require('./routes/tasks')
+
+// DB connection
+mongoose.connect(process.env.DB_CONNECTION,
+    { useNewUrlParser: true, useUnifiedTopology: true },
+    () => console.log('Connected to DB')
+)
 
 
 // add middlewares
